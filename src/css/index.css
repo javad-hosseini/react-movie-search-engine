@@ -38,6 +38,7 @@ body {
   width: 100%;
   min-height: 100vh;
   position: relative;
+  z-index: 0;
   background: var(--bg);
 }
 
@@ -76,6 +77,8 @@ body::after {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 0;
 }
 
 /* Third aurora blob, centered, via #root::before so it layers with the other two */
