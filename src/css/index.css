@@ -1,0 +1,152 @@
+:root {
+  --bg: #030304;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.14);
+  --text: rgba(255, 255, 255, 0.94);
+  --text-dim: rgba(255, 255, 255, 0.58);
+  --accent: #0a84ff;
+  --accent-strong: #3aa0ff;
+  --danger: #ff453a;
+
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: var(--text);
+  background-color: var(--bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: var(--bg);
+}
+
+/* Animated aurora background — three soft blurred blobs drifting behind everything */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+body::before {
+  width: 60vmax;
+  height: 60vmax;
+  top: -20vmax;
+  left: -15vmax;
+  background: radial-gradient(circle at 30% 30%, #3a5cff, transparent 70%);
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+
+body::after {
+  width: 55vmax;
+  height: 55vmax;
+  bottom: -20vmax;
+  right: -15vmax;
+  background: radial-gradient(circle at 70% 70%, #7b2ff7, transparent 70%);
+  animation: drift-b 32s ease-in-out infinite alternate;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Third aurora blob, centered, via #root::before so it layers with the other two */
+#root::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 30%;
+  left: 45%;
+  width: 45vmax;
+  height: 45vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff3d8a, transparent 72%);
+  filter: blur(100px);
+  opacity: 0.32;
+  pointer-events: none;
+  animation: drift-c 22s ease-in-out infinite alternate;
+}
+
+@keyframes drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(8vmax, 10vmax) scale(1.15); }
+}
+
+@keyframes drift-b {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-6vmax, -8vmax) scale(1.1); }
+}
+
+@keyframes drift-c {
+  from { transform: translate(-10vmax, -6vmax) scale(1); }
+  to   { transform: translate(6vmax, 8vmax) scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after, #root::before {
+    animation: none;
+  }
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent-strong);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--accent);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+button {
+  border-radius: 980px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+button:hover {
+  border-color: var(--border);
+}
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

@@ -1,0 +1,114 @@
+.home {
+  padding: 1.5rem 0 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-form {
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+
+  position: relative;
+  border-radius: 980px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.search-form::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 980px;
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  filter: url(#glass-distortion);
+  -webkit-filter: url(#glass-distortion);
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 980px;
+  background-color: transparent;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.search-input::placeholder {
+  color: var(--text-dim);
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-button {
+  padding: 0.75rem 1.75rem;
+  background-color: var(--accent);
+  color: white;
+  border-radius: 980px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.search-button:hover {
+  background-color: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
+.error-message {
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 69, 58, 0.12);
+  border: 1px solid rgba(255, 69, 58, 0.35);
+  color: #ffb4ae;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--text-dim);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 639px) {
+  .home {
+    padding: 0.5rem 0 1rem;
+  }
+
+  .search-form {
+    margin-bottom: 1.5rem;
+  }
+
+  .search-button {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .movies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+}
